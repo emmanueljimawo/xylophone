@@ -4,6 +4,22 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  void playSound(y) {
+    final player = AudioCache();
+    player.play('note$y.wav');
+  }
+
+  Expanded buildKey(x, int y) {
+    return Expanded(
+      child: FlatButton(
+        color: x,
+        onPressed: () {
+          playSound(y);
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,78 +27,15 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note1.wav');
-                },
-                child: Container(
-                  color: Colors.red,
-                  height: 80,
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note2.wav');
-                },
-                child: Container(
-                  color: Colors.orange,
-                  height: 80,
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note3.wav');
-                },
-                child: Container(
-                  color: Colors.yellow,
-                  height: 80,
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note4.wav');
-                },
-                child: Container(
-                  color: Colors.green,
-                  height: 80,
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note5.wav');
-                },
-                child: Container(
-                  color: Colors.blue,
-                  height: 80,
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note6.wav');
-                },
-                child: Container(
-                  color: Colors.indigo,
-                  height: 80,
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note7.wav');
-                },
-                child: Container(
-                  color: Colors.purple,
-                  height: 80,
-                ),
-              )
+              buildKey(Colors.red, 1),
+              buildKey(Colors.orange, 2),
+              buildKey(Colors.yellow, 3),
+              buildKey(Colors.green, 4),
+              buildKey(Colors.indigo, 5),
+              buildKey(Colors.purple, 6),
+              buildKey(Colors.blue, 7),
             ],
           ),
         ),
